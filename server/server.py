@@ -100,6 +100,9 @@ async def _process_and_respond(
         else:
             log.info("[tts] ok")
             await websocket.send("[log] [tts] ok")
+    else:
+        log.info("[tts] sending to esp32")
+        await tts_handler.generate_and_send(response, websocket)
 
 class _NoInfoFormatter(logging.Formatter):
     """INFO lines drop the badge except on tts/stt; WARNING/ERROR keep [LEVEL]."""
