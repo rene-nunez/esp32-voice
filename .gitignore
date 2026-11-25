@@ -1,5 +1,5 @@
 .pio
-include/secrets.h
+firmware/include/secrets.h
 
 __pycache__/
 *.pyc

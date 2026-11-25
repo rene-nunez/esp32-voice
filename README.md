@@ -27,7 +27,7 @@ You need:
 
 We also use a 100 uF capacitor between VCC and GND on the microphone, and a resistor between the amp GAIN pin and GND.
 
-The pin numbers used by the firmware are in [include/pins.h](include/pins.h). Before flashing, connect every component to the same pins listed there.
+The pin numbers used by the firmware are in [firmware/include/pins.h](firmware/include/pins.h). Before flashing, connect every component to the same pins listed there.
 
 ## Prerequisites
 
@@ -70,6 +70,12 @@ The server prints what it is doing on the console and waits for the ESP32 to con
 
 ### ESP32
 
+All PlatformIO files live in [firmware/](firmware/). Run the commands below from that directory:
+
+```
+cd firmware
+```
+
 1. Create secrets.h from the example:
 
 ```
@@ -82,7 +88,7 @@ cp include/secrets.h.example include/secrets.h
 - `WIFI_PASSWORD`: your network password.
 - `SERVER_IP`: the address of the computer running the server. Do not put quotes around it.
 
-3. Make sure your wiring matches the pins in include/pins.h (microphone, amplifier, button and LED).
+3. Make sure your wiring matches the pins in [include/pins.h](firmware/include/pins.h) (microphone, amplifier, button and LED).
 
 4. Build and flash:
 
@@ -109,8 +115,8 @@ There are three places to configure:
   - `WHISPER_MODEL`, `WHISPER_DEVICE`, `WHISPER_COMPUTE_TYPE`.
   - `TTS_SERVER_VOICE`, `TTS_SERVER_RATE`.
 
-- include/secrets.h: WiFi name, password and server IP. Copy it from [include/secrets.h.example](include/secrets.h.example).
-- include/config.h: firmware tuning such as voice detection. include/pins.h has the pin numbers.
+- firmware/include/secrets.h: WiFi name, password and server IP. Copy it from [firmware/include/secrets.h.example](firmware/include/secrets.h.example).
+- firmware/include/config.h: firmware tuning such as voice detection. firmware/include/pins.h has the pin numbers.
 
 ## Protocol
 
@@ -131,7 +137,7 @@ Press the button to start listening. Speak. The reply is played after 1.5 second
 
 ## Tuning speech detection
 
-If the assistant misses quiet speech, lower `VAD_ENERGY_THRESHOLD` in [include/config.h](include/config.h). If it starts while you are not talking, raise it. `SILENCE_TIMEOUT_MS` sets how long after speaking the session ends.
+If the assistant misses quiet speech, lower `VAD_ENERGY_THRESHOLD` in [firmware/include/config.h](firmware/include/config.h). If it starts while you are not talking, raise it. `SILENCE_TIMEOUT_MS` sets how long after speaking the session ends.
 
 ## License
 
