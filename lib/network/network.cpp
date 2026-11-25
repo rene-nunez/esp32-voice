@@ -1,4 +1,4 @@
-#include "network_manager.h"
+#include "network.h"
 
 #ifndef SERVER_IP
   #error "SERVER_IP not defined. Copy include/secrets.h.example to include/secrets.h"
@@ -12,7 +12,7 @@
 #define TOSTRING_(x) STRINGIFY_(x)
 #define WS_URL "ws://" TOSTRING_(SERVER_IP) ":" TOSTRING_(WS_PORT)
 
-bool NetworkManager::connect() {
+bool Network::connect() {
   if (client.connect(WS_URL)) {
     Serial.println("[net] ws ok");
     return true;
@@ -20,7 +20,7 @@ bool NetworkManager::connect() {
   return false;
 }
 
-void NetworkManager::begin(MessageCallback on_text, BinaryCallback on_binary) {
+void Network::begin(MessageCallback on_text, BinaryCallback on_binary) {
   onText = on_text;
   onBinary = on_binary;
 
@@ -52,7 +52,7 @@ void NetworkManager::begin(MessageCallback on_text, BinaryCallback on_binary) {
   }
 }
 
-void NetworkManager::tick() {
+void Network::tick() {
   if (client.available()) {
     client.poll();
     lastAttempt = 0;
@@ -63,6 +63,6 @@ void NetworkManager::tick() {
   }
 }
 
-bool NetworkManager::sendBinary(const uint8_t* data, size_t len) {
+bool Network::sendBinary(const uint8_t* data, size_t len) {
   return client.sendBinary((const char*)data, len);
 }

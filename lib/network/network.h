@@ -1,10 +1,10 @@
-#ifndef NETWORK_MANAGER_H
-#define NETWORK_MANAGER_H
+#ifndef NETWORK_H
+#define NETWORK_H
 
 #include <ArduinoWebsockets.h>
 #include "config.h"
 
-class NetworkManager {
+class Network {
 public:
   using MessageCallback = void (*)(const String& text);
   using BinaryCallback  = void (*)(const uint8_t* data, size_t len);

@@ -3,7 +3,7 @@
 
 #include "config.h"
 
-#include "network_manager.h"
+#include "network.h"
 #include "protocol_manager.h"
 #include "sound.h"
 #include "button.h"
@@ -13,7 +13,7 @@
   #error "WIFI_SSID not defined. Copy include/secrets.h.example to include/secrets.h"
 #endif
 
-static NetworkManager  net;
+static Network         net;
 static ProtocolManager proto(net);
 static Sound           sound;
 static Button          button(proto);
