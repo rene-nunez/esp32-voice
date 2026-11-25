@@ -1,4 +1,4 @@
-#include "vad.h"
+#include "VAD.h"
 #include "config.h"
 
 void VAD::begin(OnStopListening on_stop) {

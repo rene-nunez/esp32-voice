@@ -2,7 +2,7 @@
 #define PROTOCOL_H
 
 #include <Arduino.h>
-#include "network.h"
+#include "Network.h"
 
 class Protocol {
 public:

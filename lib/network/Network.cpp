@@ -1,4 +1,4 @@
-#include "network.h"
+#include "Network.h"
 
 #ifndef SERVER_IP
   #error "SERVER_IP not defined. Copy include/secrets.h.example to include/secrets.h"

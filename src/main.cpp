@@ -3,18 +3,18 @@
 
 #include "config.h"
 
-#include "network.h"
-#include "protocol.h"
-#include "sound.h"
-#include "button.h"
-#include "vad.h"
+#include "Network.h"
+#include "Protocol.h"
+#include "Sound.h"
+#include "Button.h"
+#include "VAD.h"
 
 #ifndef WIFI_SSID
   #error "WIFI_SSID not defined. Copy include/secrets.h.example to include/secrets.h"
 #endif
 
 static Network         net;
-static Protocol      proto(net);
+static Protocol        proto(net);
 static Sound           sound;
 static Button          button(proto);
 static VAD             vad(proto, sound);

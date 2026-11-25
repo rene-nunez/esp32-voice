@@ -5,7 +5,7 @@
 #include <driver/i2s.h>
 
 #include "Audio.h"
-#include "ring.h"
+#include "Ring.h"
 #include "config.h"
 
 class Sound {

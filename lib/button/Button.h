@@ -2,7 +2,7 @@
 #define BUTTON_H
 
 #include <Arduino.h>
-#include "protocol.h"
+#include "Protocol.h"
 #include "config.h"
 
 class Button {

@@ -2,8 +2,8 @@
 #define VAD_H
 
 #include <Arduino.h>
-#include "protocol.h"
-#include "sound.h"
+#include "Protocol.h"
+#include "Sound.h"
 #include "config.h"
 
 class VAD {

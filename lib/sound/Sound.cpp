@@ -1,4 +1,4 @@
-#include "sound.h"
+#include "Sound.h"
 #include "pins.h"
 
 static Sound* instance = nullptr;

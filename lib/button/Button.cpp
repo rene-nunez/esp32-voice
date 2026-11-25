@@ -1,4 +1,4 @@
-#include "button.h"
+#include "Button.h"
 #include "pins.h"
 
 void Button::begin(OnStartListening on_start) {

@@ -1,4 +1,4 @@
-#include "protocol.h"
+#include "Protocol.h"
 #include "config.h"
 
 void Protocol::send(uint8_t type, const uint8_t* payload, size_t len) {
