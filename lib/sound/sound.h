@@ -5,7 +5,7 @@
 #include <driver/i2s.h>
 
 #include "Audio.h"
-#include "ring_buffer.h"
+#include "ring.h"
 #include "config.h"
 
 class Sound {
@@ -20,11 +20,11 @@ public:
 
   int readMic(int16_t* samples, size_t max_samples);
 
-  RingBuffer<String, MAX_QUEUE>& ttsQueue() { return queue; }
+  Ring<String, MAX_QUEUE>& ttsQueue() { return queue; }
 
 private:
   Audio player;
-  RingBuffer<String, MAX_QUEUE> queue;
+  Ring<String, MAX_QUEUE> queue;
   String ttsLang = "en";
   bool playing = false;
   unsigned long playStart = 0;

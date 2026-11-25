@@ -1,11 +1,11 @@
-#ifndef RING_BUFFER_H
-#define RING_BUFFER_H
+#ifndef RING_H
+#define RING_H
 
 #include <Arduino.h>
 
 template<typename T, int Capacity>
 
-class RingBuffer {
+class Ring {
 public:
   void enqueue(T item) {
     int next = (tail + 1) % Capacity;
