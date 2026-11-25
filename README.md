@@ -1,14 +1,16 @@
-# ESP32 AI Assistant
+# ESP32 Voice
 
 An ESP32 captures your voice, a local Python backend transcribes it using Whisper, generates responses with the Groq LLM you configure, and plays them through either your computer or the ESP32’s speaker.
 
 ![hardware](./assets/hardware.jpeg)
 
+AI-enhanced image. Some details may not be accurate.
+
 ## Features
 
 - Push-button toggle with debounce.
 - Energy-based VAD with pre-roll.
-- English or Spanish supported, selected with `LANGUAGE`.
+- English or Spanish supported.
 - TTS on your computer (edge-tts) or ESP32 speaker (Google TTS), with fallback.
 - WebSocket link: binary frames one way, text frames the other.
 
@@ -125,9 +127,7 @@ The server sends plain text frames:
 
 ## Usage
 
-Press the button to start listening. Speak. The reply is played after 1.5 seconds of silence. Press the button again to stop early.
-
-See the server console for the transcript and the answer.
+Press the button to start listening. Speak. The reply is played after 1.5 seconds of silence. Press the button again to stop early. See the server console for the transcript and the answer.
 
 ## Tuning speech detection
 
