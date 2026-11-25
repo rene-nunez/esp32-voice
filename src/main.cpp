@@ -6,7 +6,7 @@
 #include "network_manager.h"
 #include "protocol_manager.h"
 #include "sound.h"
-#include "button_manager.h"
+#include "button.h"
 #include "vad.h"
 
 #ifndef WIFI_SSID
@@ -16,7 +16,7 @@
 static NetworkManager  net;
 static ProtocolManager proto(net);
 static Sound           sound;
-static ButtonManager   button(proto);
+static Button          button(proto);
 static VAD             vad(proto, sound);
 
 static void onTextMessage(const String& text) {

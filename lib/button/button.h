@@ -1,15 +1,15 @@
-#ifndef BUTTON_MANAGER_H
-#define BUTTON_MANAGER_H
+#ifndef BUTTON_H
+#define BUTTON_H
 
 #include <Arduino.h>
 #include "protocol_manager.h"
 #include "config.h"
 
-class ButtonManager {
+class Button {
 public:
   using OnStartListening = void (*)();
 
-  explicit ButtonManager(ProtocolManager& proto) : proto(proto) {}
+  explicit Button(ProtocolManager& proto) : proto(proto) {}
 
   void begin(OnStartListening on_start);
   void tick();

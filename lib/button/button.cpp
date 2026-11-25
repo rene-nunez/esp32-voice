@@ -1,14 +1,14 @@
-#include "button_manager.h"
+#include "button.h"
 #include "pins.h"
 
-void ButtonManager::begin(OnStartListening on_start) {
+void Button::begin(OnStartListening on_start) {
   onStart = on_start;
   pinMode(PIN_BTN, INPUT_PULLUP);
   pinMode(PIN_LED, OUTPUT);
   digitalWrite(PIN_LED, LOW);
 }
 
-void ButtonManager::tick() {
+void Button::tick() {
   if (millis() < 2000) return;
 
   bool btn_now = (digitalRead(PIN_BTN) == LOW);
@@ -24,7 +24,7 @@ void ButtonManager::tick() {
   }
 }
 
-void ButtonManager::handlePress() {
+void Button::handlePress() {
   listening = !listening;
   digitalWrite(PIN_LED, listening);
 
@@ -38,11 +38,11 @@ void ButtonManager::handlePress() {
   }
 }
 
-bool ButtonManager::isListening() const {
+bool Button::isListening() const {
   return listening;
 }
 
-void ButtonManager::stopListening() {
+void Button::stopListening() {
   listening = false;
   digitalWrite(PIN_LED, LOW);
 }
