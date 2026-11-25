@@ -2,6 +2,8 @@
 
 An ESP32 captures your voice, a local Python backend transcribes it using Whisper, generates responses with the Groq LLM you configure, and plays them through either your computer or the ESP32’s speaker.
 
+This is a prototype for experimentation, not a production-ready assistant.
+
 ![hardware](./assets/hardware.jpeg)
 
 AI-enhanced image. Some details may not be accurate.
@@ -96,7 +98,7 @@ cp include/secrets.h.example include/secrets.h
 pio run -t upload
 ```
 
-The firmware shows READY on the serial monitor when it connects to WiFi and the server. You can open the serial monitor with the following command:
+The firmware prints `[sys] ready` on the serial monitor when it connects to WiFi and the server. You can open the serial monitor with the following command:
 
 ```
 pio device monitor
