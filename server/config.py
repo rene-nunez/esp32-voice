@@ -7,7 +7,7 @@ load_dotenv()
 # Groq
 GROQ_API_KEY: Final[str | None] = os.getenv("GROQ_API_KEY")
 if not GROQ_API_KEY:
-    raise RuntimeError("GROQ_API_KEY not set. Create a .env file from .env.example")
+    raise RuntimeError("GROQ_API_KEY not set. Create server/.env from server/.env.example")
 
 WS_PORT: Final[int] = int(os.getenv("SERVER_WS_PORT", "8765"))
 

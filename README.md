@@ -49,16 +49,16 @@ source .venv/bin/activate
 2. Install the dependencies:
 
 ```
-pip install -r requirements.txt
+pip install -r server/requirements.txt
 ```
 
 3. Create the .env file from the example:
 
 ```
-cp .env.example .env
+cp server/.env.example server/.env
 ```
 
-4. Open .env and set `GROQ_API_KEY`. You can also change the language, the model, the playback target and more. Each option is explained in the file and in the Configuration section below.
+4. Open server/.env and set `GROQ_API_KEY`. You can also change the language, the model, the playback target and more. Each option is explained in the file and in the Configuration section below.
 
 5. Start the server:
 
@@ -106,7 +106,7 @@ pio device monitor
 
 There are three places to configure:
 
-- server/.env: server options. Copy it from [.env.example](.env.example) and edit the values you need. Main options:
+- server/.env: server options. Copy it from [server/.env.example](server/.env.example) and edit the values you need. Main options:
 
   - `GROQ_API_KEY`: required.
   - `LLM_MODEL`: which Groq model to use.
