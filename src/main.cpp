@@ -4,7 +4,7 @@
 #include "config.h"
 
 #include "network.h"
-#include "protocol_manager.h"
+#include "protocol.h"
 #include "sound.h"
 #include "button.h"
 #include "vad.h"
@@ -14,7 +14,7 @@
 #endif
 
 static Network         net;
-static ProtocolManager proto(net);
+static Protocol      proto(net);
 static Sound           sound;
 static Button          button(proto);
 static VAD             vad(proto, sound);

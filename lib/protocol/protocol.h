@@ -1,12 +1,12 @@
-#ifndef PROTOCOL_MANAGER_H
-#define PROTOCOL_MANAGER_H
+#ifndef PROTOCOL_H
+#define PROTOCOL_H
 
 #include <Arduino.h>
 #include "network.h"
 
-class ProtocolManager {
+class Protocol {
 public:
-  explicit ProtocolManager(Network& net) : net(net) {}
+  explicit Protocol(Network& net) : net(net) {}
 
   void sendAudio(const int16_t* samples, size_t bytes);
   void sendControl(const char* command);

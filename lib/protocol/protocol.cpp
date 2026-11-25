@@ -1,7 +1,7 @@
-#include "protocol_manager.h"
+#include "protocol.h"
 #include "config.h"
 
-void ProtocolManager::send(uint8_t type, const uint8_t* payload, size_t len) {
+void Protocol::send(uint8_t type, const uint8_t* payload, size_t len) {
   buf[0] = type;
   buf[1] = (len >> 24) & 0xFF;
   buf[2] = (len >> 16) & 0xFF;
@@ -12,10 +12,10 @@ void ProtocolManager::send(uint8_t type, const uint8_t* payload, size_t len) {
   net.sendBinary(buf, 5 + len);
 }
 
-void ProtocolManager::sendAudio(const int16_t* samples, size_t bytes) {
+void Protocol::sendAudio(const int16_t* samples, size_t bytes) {
   send(MSG_AUDIO, (const uint8_t*)samples, bytes);
 }
 
-void ProtocolManager::sendControl(const char* command) {
+void Protocol::sendControl(const char* command) {
   send(MSG_TEXT, (const uint8_t*)command, strlen(command));
 }

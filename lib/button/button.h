@@ -2,14 +2,14 @@
 #define BUTTON_H
 
 #include <Arduino.h>
-#include "protocol_manager.h"
+#include "protocol.h"
 #include "config.h"
 
 class Button {
 public:
   using OnStartListening = void (*)();
 
-  explicit Button(ProtocolManager& proto) : proto(proto) {}
+  explicit Button(Protocol& proto) : proto(proto) {}
 
   void begin(OnStartListening on_start);
   void tick();
@@ -19,7 +19,7 @@ public:
 private:
   void handlePress();
 
-  ProtocolManager& proto;
+  Protocol& proto;
   OnStartListening onStart = nullptr;
   bool listening = false;
   bool debounced = false;
