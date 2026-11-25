@@ -5,7 +5,7 @@
 
 #include "network_manager.h"
 #include "protocol_manager.h"
-#include "audio_manager.h"
+#include "sound.h"
 #include "button_manager.h"
 #include "vad.h"
 
@@ -15,17 +15,17 @@
 
 static NetworkManager  net;
 static ProtocolManager proto(net);
-static AudioManager    audio;
+static Sound           sound;
 static ButtonManager   button(proto);
-static VAD             vad(proto, audio);
+static VAD             vad(proto, sound);
 
 static void onTextMessage(const String& text) {
   if (text.startsWith("[log] ")) {
     Serial.println(text.substring(6));
   } else if (text.startsWith("LANG:")) {
-    audio.setTtsLang(text.substring(5));
+    sound.setTtsLang(text.substring(5));
   } else {
-    audio.ttsQueue().enqueue(text);
+    sound.ttsQueue().enqueue(text);
   }
 }
 
@@ -73,8 +73,8 @@ void setup() {
   delay(100);
 
   net.begin(onTextMessage, nullptr);
-  audio.initSpeaker();
-  audio.initMic();
+  sound.initSpeaker();
+  sound.initMic();
   button.begin(onStartListening);
   vad.begin(onStopListening);
 
@@ -83,10 +83,10 @@ void setup() {
 
 void loop() {
   net.tick();
-  audio.tick();
+  sound.tick();
 
   if (WiFi.status() != WL_CONNECTED) return;
-  if (audio.isPlaying()) return;
+  if (sound.isPlaying()) return;
 
   button.tick();
 

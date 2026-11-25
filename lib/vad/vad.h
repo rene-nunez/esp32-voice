@@ -3,14 +3,14 @@
 
 #include <Arduino.h>
 #include "protocol_manager.h"
-#include "audio_manager.h"
+#include "sound.h"
 #include "config.h"
 
 class VAD {
 public:
   using OnStopListening = void (*)();
 
-  VAD(ProtocolManager& proto, AudioManager& audio) : proto(proto), sound(audio) {}
+  VAD(ProtocolManager& proto, Sound& sound) : proto(proto), sound(sound) {}
 
   void begin(OnStopListening on_stop);
   void resetTimeout();
@@ -23,7 +23,7 @@ private:
   static constexpr size_t PREROLL_CHUNKS = 4; // ~128ms of audio before the trigger
 
   ProtocolManager& proto;
-  AudioManager& sound;
+  Sound& sound;
   OnStopListening onStop = nullptr;
   unsigned long lastVoiceTime = 0;
   bool sending = false;

@@ -1,5 +1,5 @@
-#ifndef AUDIO_MANAGER_H
-#define AUDIO_MANAGER_H
+#ifndef SOUND_H
+#define SOUND_H
 
 #include <Arduino.h>
 #include <driver/i2s.h>
@@ -8,7 +8,7 @@
 #include "ring_buffer.h"
 #include "config.h"
 
-class AudioManager {
+class Sound {
 public:
   void initSpeaker();
   void initMic();

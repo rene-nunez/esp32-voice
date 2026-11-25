@@ -1,7 +1,7 @@
-#include "audio_manager.h"
+#include "sound.h"
 #include "pins.h"
 
-static AudioManager* instance = nullptr;
+static Sound* instance = nullptr;
 
 void audio_eof_speech(const char*) {
   if (instance) instance->stopPlaying();
@@ -15,14 +15,14 @@ void audio_eof_stream(const char*) {
   if (instance) instance->stopPlaying();
 }
 
-void AudioManager::initSpeaker() {
+void Sound::initSpeaker() {
   instance = this;
   player.setPinout(AMP_BCLK, AMP_LRC, AMP_DOUT);
   player.setVolume(24);
   Serial.println("[audio] speaker ok");
 }
 
-void AudioManager::initMic() {
+void Sound::initMic() {
   i2s_config_t i2s_config = {
     .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
     .sample_rate = 16000,
@@ -47,7 +47,7 @@ void AudioManager::initMic() {
   i2s_set_clk(I2S_MIC, 16000, I2S_BITS_PER_SAMPLE_16BIT, I2S_CHANNEL_MONO);
 }
 
-void AudioManager::tick() {
+void Sound::tick() {
   player.loop();
 
   if (!playing && !queue.empty()) {
@@ -65,19 +65,19 @@ void AudioManager::tick() {
   }
 }
 
-bool AudioManager::isPlaying() const {
+bool Sound::isPlaying() const {
   return playing;
 }
 
-void AudioManager::stopPlaying() {
+void Sound::stopPlaying() {
   playing = false;
 }
 
-void AudioManager::setTtsLang(const String& lang) {
+void Sound::setTtsLang(const String& lang) {
   ttsLang = lang;
 }
 
-int AudioManager::readMic(int16_t* samples, size_t max_samples) {
+int Sound::readMic(int16_t* samples, size_t max_samples) {
   size_t bytes_read = 0;
   i2s_read(I2S_MIC, samples, max_samples * sizeof(int16_t), &bytes_read, pdMS_TO_TICKS(10));
   return (int)bytes_read;
