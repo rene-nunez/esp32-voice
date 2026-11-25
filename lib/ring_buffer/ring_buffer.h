@@ -8,28 +8,28 @@ template<typename T, int Capacity>
 class RingBuffer {
 public:
   void enqueue(T item) {
-    int next = (tail_ + 1) % Capacity;
-    if (next != head_) {
-      buf_[tail_] = item;
-      tail_ = next;
+    int next = (tail + 1) % Capacity;
+    if (next != head) {
+      buf[tail] = item;
+      tail = next;
     }
   }
 
   bool empty() const {
-    return head_ == tail_;
+    return head == tail;
   }
 
   T dequeue() {
     if (empty()) return T();
-    T item = buf_[head_];
-    head_ = (head_ + 1) % Capacity;
+    T item = buf[head];
+    head = (head + 1) % Capacity;
     return item;
   }
 
 private:
-  T buf_[Capacity];
-  int head_ = 0;
-  int tail_ = 0;
+  T buf[Capacity];
+  int head = 0;
+  int tail = 0;
 };
 
 #endif

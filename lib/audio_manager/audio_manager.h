@@ -20,14 +20,14 @@ public:
 
   int readMic(int16_t* samples, size_t max_samples);
 
-  RingBuffer<String, MAX_QUEUE>& ttsQueue() { return queue_; }
+  RingBuffer<String, MAX_QUEUE>& ttsQueue() { return queue; }
 
 private:
-  Audio audio_;
-  RingBuffer<String, MAX_QUEUE> queue_;
-  String tts_lang_ = "en";
-  bool playing_ = false;
-  unsigned long play_start_ = 0;
+  Audio player;
+  RingBuffer<String, MAX_QUEUE> queue;
+  String ttsLang = "en";
+  bool playing = false;
+  unsigned long playStart = 0;
 };
 
 #endif

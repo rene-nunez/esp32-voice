@@ -6,7 +6,7 @@
 
 class ProtocolManager {
 public:
-  explicit ProtocolManager(NetworkManager& net) : net_(net) {}
+  explicit ProtocolManager(NetworkManager& net) : net(net) {}
 
   void sendAudio(const int16_t* samples, size_t bytes);
   void sendControl(const char* command);
@@ -14,8 +14,8 @@ public:
 private:
   void send(uint8_t type, const uint8_t* payload, size_t len);
 
-  NetworkManager& net_;
-  uint8_t buf_[1030];
+  NetworkManager& net;
+  uint8_t buf[1030];
 };
 
 #endif

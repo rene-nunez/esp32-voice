@@ -9,7 +9,7 @@ class ButtonManager {
 public:
   using OnStartListening = void (*)();
 
-  explicit ButtonManager(ProtocolManager& proto) : proto_(proto) {}
+  explicit ButtonManager(ProtocolManager& proto) : proto(proto) {}
 
   void begin(OnStartListening on_start);
   void tick();
@@ -19,12 +19,12 @@ public:
 private:
   void handlePress();
 
-  ProtocolManager& proto_;
-  OnStartListening on_start_ = nullptr;
-  bool listening_ = false;
-  bool debounced_ = false;
-  bool pending_ = false;
-  unsigned long pending_since_ = 0;
+  ProtocolManager& proto;
+  OnStartListening onStart = nullptr;
+  bool listening = false;
+  bool debounced = false;
+  bool pending = false;
+  unsigned long pendingSince = 0;
 };
 
 #endif

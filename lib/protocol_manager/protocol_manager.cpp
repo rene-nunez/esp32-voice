@@ -2,14 +2,14 @@
 #include "config.h"
 
 void ProtocolManager::send(uint8_t type, const uint8_t* payload, size_t len) {
-  buf_[0] = type;
-  buf_[1] = (len >> 24) & 0xFF;
-  buf_[2] = (len >> 16) & 0xFF;
-  buf_[3] = (len >> 8)  & 0xFF;
-  buf_[4] = len & 0xFF;
+  buf[0] = type;
+  buf[1] = (len >> 24) & 0xFF;
+  buf[2] = (len >> 16) & 0xFF;
+  buf[3] = (len >> 8)  & 0xFF;
+  buf[4] = len & 0xFF;
 
-  memcpy(buf_ + 5, payload, len);
-  net_.sendBinary(buf_, 5 + len);
+  memcpy(buf + 5, payload, len);
+  net.sendBinary(buf, 5 + len);
 }
 
 void ProtocolManager::sendAudio(const int16_t* samples, size_t bytes) {

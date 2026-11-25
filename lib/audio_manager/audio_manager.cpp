@@ -1,24 +1,24 @@
 #include "audio_manager.h"
 #include "pins.h"
 
-static AudioManager* s_instance = nullptr;
+static AudioManager* instance = nullptr;
 
 void audio_eof_speech(const char*) {
-  if (s_instance) s_instance->stopPlaying();
+  if (instance) instance->stopPlaying();
 }
 
 void audio_eof_mp3(const char*) {
-  if (s_instance) s_instance->stopPlaying();
+  if (instance) instance->stopPlaying();
 }
 
 void audio_eof_stream(const char*) {
-  if (s_instance) s_instance->stopPlaying();
+  if (instance) instance->stopPlaying();
 }
 
 void AudioManager::initSpeaker() {
-  s_instance = this;
-  audio_.setPinout(AMP_BCLK, AMP_LRC, AMP_DOUT);
-  audio_.setVolume(24);
+  instance = this;
+  player.setPinout(AMP_BCLK, AMP_LRC, AMP_DOUT);
+  player.setVolume(24);
   Serial.println("[audio] speaker ok");
 }
 
@@ -48,33 +48,33 @@ void AudioManager::initMic() {
 }
 
 void AudioManager::tick() {
-  audio_.loop();
+  player.loop();
 
-  if (!playing_ && !queue_.empty()) {
-    playing_ = true;
-    play_start_ = millis();
-    String payload = queue_.dequeue();
+  if (!playing && !queue.empty()) {
+    playing = true;
+    playStart = millis();
+    String payload = queue.dequeue();
 
-    audio_.connecttospeech(payload.c_str(), tts_lang_.c_str());
+    player.connecttospeech(payload.c_str(), ttsLang.c_str());
   }
 
-  if (playing_ && (millis() - play_start_ > PLAY_TIMEOUT)) {
+  if (playing && (millis() - playStart > PLAY_TIMEOUT)) {
     Serial.println("[audio] playback timeout");
-    audio_.stopSong();
-    playing_ = false;
+    player.stopSong();
+    playing = false;
   }
 }
 
 bool AudioManager::isPlaying() const {
-  return playing_;
+  return playing;
 }
 
 void AudioManager::stopPlaying() {
-  playing_ = false;
+  playing = false;
 }
 
 void AudioManager::setTtsLang(const String& lang) {
-  tts_lang_ = lang;
+  ttsLang = lang;
 }
 
 int AudioManager::readMic(int16_t* samples, size_t max_samples) {

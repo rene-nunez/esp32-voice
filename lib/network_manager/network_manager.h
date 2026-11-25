@@ -14,12 +14,12 @@ public:
   bool sendBinary(const uint8_t* data, size_t len);
 
 private:
-  websockets::WebsocketsClient client_;
-  MessageCallback on_text_ = nullptr;
-  BinaryCallback on_binary_ = nullptr;
-  unsigned long last_attempt_ = 0;
+  websockets::WebsocketsClient client;
+  MessageCallback onText = nullptr;
+  BinaryCallback onBinary = nullptr;
+  unsigned long lastAttempt = 0;
 
-  bool connect_();
+  bool connect();
 };
 
 #endif
